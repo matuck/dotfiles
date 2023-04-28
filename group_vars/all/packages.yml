@@ -1,0 +1,8 @@
+---
+
+mac_packages:
+  - ansible-language-server
+  - tmux
+  - yamllint
+  - curl
+  - wget

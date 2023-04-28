@@ -1,0 +1,30 @@
+---
+# vim: ft=yaml.ansible
+
+- name: Ensure machine is setup correctly
+  hosts: all
+
+  tasks:
+    - name: Load Overrideen settings
+      include_vars: "{{ item }}"
+      with_first_found:
+        - files:
+            - "settingsoverride.yml"
+          skip: true
+
+    - name: Include OS Specific tests
+      include_tasks: "{{ ansible_os_family }}.yml"
+
+    - name: Ensure any scripts are available
+      loop: "{{ scripts }}"
+      ansible.builtin.template:
+        src: "{{ item.localsrc }}"
+        dest: "{{ item.dest }}"
+        mode: 0770
+
+    - name: Ensure Configuraiton files are installed
+      loop: "{{ dotfilestemplates }}"
+      ansible.builtin.template:
+        src: "{{ item.localsrc }}"
+        dest: "{{ item.dest }}"
+        mode: 0660

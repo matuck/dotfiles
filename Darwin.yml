@@ -1,0 +1,6 @@
+---
+
+- name: Ensure packages are installed
+  homebrew:
+    name: "{{ mac_packages }}"
+    state: present

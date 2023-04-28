@@ -1,0 +1,5 @@
+---
+
+scripts:
+  - localsrc: templates/scripts/tmuxide.sh
+    dest: ~/bin/tmuxide
