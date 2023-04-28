@@ -2,6 +2,6 @@
 
 dotfilestemplates:
   - localsrc: templates/conffiles/vimrc.j2
-    dest: .vimrc
+    dest: ~/.vimrc
   - localsrc: templates/conffiles/tmux.conf.j2
     dest: ~/.tmux.conf

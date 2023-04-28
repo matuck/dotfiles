@@ -24,7 +24,7 @@ Plug 'vim-airline/vim-airline'
 "Plug 'shougo/deoplete.nvim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
-
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 
 "]let g:deoplete#enable_at_startup = 1
