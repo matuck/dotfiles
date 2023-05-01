@@ -1,0 +1,17 @@
+---
+
+git:
+  work:
+    name: "Mitch Tuck"
+    email: "tuckm@epb.net"
+    signingkey: "CE107013A0E03F6F"
+    defaultBranch: "main"
+    excludesFile: "~/.gitignore"
+    gpgSign: True
+  personal:
+    name: "Mitch Tuck"
+    email: "matuck@matuck.com"
+    signingkey: "CE107013A0E03F6F"
+    defaultBranch: "main"
+    excludesFile: "~/.gitignore"
+    gpgSign: True

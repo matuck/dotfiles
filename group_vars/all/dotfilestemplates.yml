@@ -5,3 +5,7 @@ dotfilestemplates:
     dest: ~/.vimrc
   - localsrc: templates/conffiles/tmux.conf.j2
     dest: ~/.tmux.conf
+  - localsrc: templates/conffiles/gitconfig.j2
+    dest: ~/.gitconfig
+  - localsrc: templates/conffiles/gitignore.j2
+    dest: ~/.gitignore
