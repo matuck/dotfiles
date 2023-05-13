@@ -28,3 +28,9 @@
         src: "{{ item.localsrc }}"
         dest: "{{ item.dest }}"
         mode: 0660
+
+    - name: Ensure has arvhies setup
+      loop: "{{ archives }}"
+      ansible.builtin.unarchive:
+        src: "{{ item.file }}"
+        dest: "{{ item.dest }}"

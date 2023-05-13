@@ -1,0 +1,5 @@
+---
+
+archives:
+  - file: files/ohmyzsh.tgz
+    dest: $HOME
