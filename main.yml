@@ -15,6 +15,11 @@
     - name: Include OS Specific tests
       include_tasks: "{{ ansible_os_family }}.yml"
 
+    - name: Ensure home bin directory exists
+      ansible.builtin.file:
+        path: $HOME/bin
+        state: directory
+
     - name: Ensure any scripts are available
       loop: "{{ scripts }}"
       ansible.builtin.template:
