@@ -47,7 +47,7 @@
 
     - name: Git checkout
       ansible.builtin.git:
-        repo: "{{ git.repo }}"
-        dest: "{{ git.dest }}"
-        version: "{{ git.branch | default(OMIT) }}"
+        repo: "{{ item.repo }}"
+        dest: "{{ item.dest }}"
+        version: "{{ git.branch | default(omit) }}"
       with_items: "{{ gits }}"
