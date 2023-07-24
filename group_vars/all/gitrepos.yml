@@ -1,0 +1,4 @@
+---
+gits:
+  repo: "https://github.com/tmux-plugins/tpm"
+  dest: "~/.tmux/plugins/tpm"
