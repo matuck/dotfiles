@@ -17,6 +17,10 @@ else
   export EDITOR='mvim'
 fi
 
+# HIST_STAMPS="mm/dd/yyyy"
+export HISTFILE="$HOME/.zsh_history-$( basename $( tty 2> /dev/null ) ) " &> /dev/null
+export PROMPT_COMMAND='history -a'
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -45,6 +49,8 @@ export PATH="$HOME/Library/Python/3.10/bin:$PATH"
 eval "$(rbenv init -)"
 {% endif %}
 set -o vi
+bindkey '^R' history-incremental-search-backward
+export LESS=" -X"
 
 
 #configures ssh to use gpg

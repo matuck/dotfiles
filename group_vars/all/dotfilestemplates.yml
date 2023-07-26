@@ -11,3 +11,5 @@ dotfilestemplates:
     dest: ~/.gitignore
   - localsrc: templates/conffiles/zshrc.j2
     dest: ~/.zshrc
+  - localsrc: templates/conffiles/bashrc.j2
+    dest: ~/.bashrc
