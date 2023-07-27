@@ -1,0 +1,8 @@
+---
+# tasks file for bash
+
+- name: Ensure bashrc is updated
+  ansible.builtin.template:
+    src: "templates/bashrc.j2"
+    dest: "$HOME/.bashrc"
+    mode: 0660
