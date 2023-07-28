@@ -1,0 +1,27 @@
+---
+# tasks file for tmux
+
+- name: Ensure tmux is installed
+  become: true
+  package:
+    name: tmux
+    state: present
+
+- name: Ensure .tmux directory exists
+  file:
+    path: "$HOME/.tmux/plugins"
+    state: directory
+    mode: 0755
+    recurse: true
+
+- name: Install tpm
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "$HOME/.tmux/plugins/tpm"
+
+- name: Ensure tmux.conf is setup
+  backup: true
+  ansible.builtin.template:
+    src: "templates/tmux.conf.j2"
+    dest: "$HOME/.tmux.conf"
+    mode: 0660
