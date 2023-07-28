@@ -1,0 +1,7 @@
+---
+# defaults file for git
+
+gitdefaultBranch: "main"
+gitexcludesFile: "~/.gitignore"
+gitgpgSign: false
+gitsigningkey: ""

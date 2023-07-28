@@ -1,0 +1,14 @@
+[user]
+	name = {{ gitname }}
+	email = {{ gitemail }}
+{% if gitsigningkey|length > 0 %}
+	signingkey = {{ gitsigningkey }}
+{% endif %}
+[init]
+	defaultBranch = {{ gitdefaultBranch }}
+[core]
+	excludesFile = {{ gitexcludesFile }}
+[commit]
+	gpgSign = {{ gitgpgSign }} 
+[tag]
+	gpgSign = {{ gitgpgSign }} 

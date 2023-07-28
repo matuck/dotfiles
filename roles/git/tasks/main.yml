@@ -1,0 +1,22 @@
+---
+# tasks file for git
+
+- name: Ensure git is installed
+  package:
+    name: git
+    state: present
+
+
+- name: Ensure gitconfig is setup
+  backup: true
+  ansible.builtin.template:
+    src: "templates/gitconfig.j2"
+    dest: "$HOME/.gitconfig"
+    mode: 0660
+
+- name: Ensure gitignore  is setup
+  backup: true
+  ansible.builtin.template:
+    src: "templates/gitignore.j2"
+    dest: "$HOME/.gitignore"
+    mode: 0660
