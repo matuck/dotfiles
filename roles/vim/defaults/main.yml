@@ -1,0 +1,16 @@
+---
+# defaults file for vim
+
+vimplugs:
+  - "Plug 'dense-analysis/ale'"
+  - "Plug 'ctrlpvim/ctrlp.vim'"
+  - "Plug 'tpope/vim-fugitive'"
+  - "Plug 'scrooloose/nerdtree'"
+  - "Plug 'vim-airline/vim-airline'"
+  - "Plug 'scrooloose/nerdcommenter'"
+  - "Plug 'tpope/vim-surround'"
+  - "Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}"
+  - "Plug 'gcmt/taboo.vim'"
+  - "Plug 'yggdroot/indentline'"
+  - "Plug 'pedrohdz/vim-yaml-folds'"
+  - "Plug 'matuck/vim-ansible-vault', { 'for': ['yaml', 'yaml.ansible'] }"
