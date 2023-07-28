@@ -1,9 +1,10 @@
+---
 galaxy_info:
   author: Mitch Tuck
-  description: My configuration for zsh
+  description: My configuration for bash
   company: none
 
-  license: license (GPL-2.0-or-later, MIT, etc)
+  license: GPLv3
 
   min_ansible_version: 2.1
 
