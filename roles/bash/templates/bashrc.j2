@@ -17,6 +17,11 @@ export PATH
 
 # User specific aliases and functions
 
+export LESS=" -X"
+{% if seperatehistory %}
 export HISTFILE="$HOME/.bash_history-$( basename $( tty 2> /dev/null ) )" &> /dev/null
 export PROMPT_COMMAND='history -a'
-export LESS=" -X"
+{% endif %}
+{% if vimode %}
+set -o vi
+{% endif %}
