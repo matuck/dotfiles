@@ -16,10 +16,11 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='mvim'
 fi
-
+{% if seperatehistory %}
 # HIST_STAMPS="mm/dd/yyyy"
 export HISTFILE="$HOME/.zsh_history-$( basename $( tty 2> /dev/null ) ) " &> /dev/null
 export PROMPT_COMMAND='history -a'
+{% endif %}
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -29,7 +30,7 @@ export PROMPT_COMMAND='history -a'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-{% if env == "work" %}
+{% if environ == "work" %}
 alias ansible-local="ansible -i ~/AnsibleLocal/ansible_inventory.yml"
 alias ansible-test="ansible -i ~/Documents/Projects/work/tower-infra-test/inventory"
 alias ansible-lab="ansible -i ~/Documents/Projects/work/tower-infra-lab/inventory"
@@ -42,13 +43,15 @@ alias ansible-playbook-qa="ansible-playbook -i ~/Documents/Projects/work/tower-i
 alias ansible-playbook-prod="ansible-playbook -i ~/Documents/Projects/work/tower-infra-prod/inventory"
 {% endif %}
 
-{% if env == "work" %}
+{% if environ == "work" %}
 export PATH="/usr/local/opt/ansible@2.9/bin:$PATH"
 export PATH="/usr/local/opt/python@3.9/bin:$PATH"
 export PATH="$HOME/Library/Python/3.10/bin:$PATH"
 eval "$(rbenv init -)"
 {% endif %}
+{% if vimode %}
 set -o vi
+{% endif %}
 bindkey '^R' history-incremental-search-backward
 export LESS=" -X"
 
