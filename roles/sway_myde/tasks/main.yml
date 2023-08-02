@@ -1,0 +1,22 @@
+---
+# tasks file for sway_myde
+
+- name: Include foot tasks
+  ansible.builtin.include_tasks:
+    file: "foot.yml"
+
+- name: Include waybar tasks
+  ansible.builtin.include_tasks:
+    file: "waybar.yml"
+
+- name: Include wofi tasks
+  ansible.builtin.include_tasks:
+    file: "wofi.yml"
+
+- name: Include non packaged apps tasks
+  ansible.builtin.include_tasks:
+    file: "nonpackaged.yml"
+
+- name: Include Sway tasks
+  ansible.builtin.include_tasks:
+    file: "sway.yml"

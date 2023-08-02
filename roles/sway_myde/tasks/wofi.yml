@@ -1,0 +1,21 @@
+---
+
+- name: Ensure wofi is installed
+  package:
+    name: wofi
+
+- name: Ensure wofi config directory exists
+  file:
+    path: $HOME/.config/wofi
+    state: directory
+    mode: 0755
+
+- name: Ensure wofi is configured
+  ansible.builtin.template:
+    src: "templates/wofi/config.j2"
+    dest: "$HOME/.config/wofi/config"
+
+- name: Ensure wofi is styled
+  ansible.builtin.template:
+    src: "templates/wofi/wofi.css.j2"
+    dest: "$HOME/.config/wofi/wofi.css"

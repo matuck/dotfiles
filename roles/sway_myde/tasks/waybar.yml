@@ -1,0 +1,21 @@
+---
+
+- name: Ensure waybar is installed
+  package:
+    name: waybar
+
+- name: Ensure waybar config directory exists
+  file:
+    path: $HOME/.config/waybar
+    state: directory
+    mode: 0755
+
+- name: Ensure waybar is configured
+  ansible.builtin.template:
+    src: "templates/waybar/config.j2"
+    dest: "$HOME/.config/waybar/config"
+
+- name: Ensure waybar style is in place
+  ansible.builtin.template:
+    src: "templates/waybar/style.css.j2"
+    dest: "$HOME/.config/waybar/style.css"

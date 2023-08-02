@@ -1,0 +1,27 @@
+---
+
+- name: Ensure foot is installed
+  package:
+    name: foot
+
+- name: Ensure foot config directory exists
+  file:
+    path: $HOME/.config/foot
+    state: directory
+    mode: 0755
+
+- name: Ensure foot.ini is configured
+  ansible.builtin.template:
+    src: "templates/foot/foot.ini.j2"
+    dest: "$HOME/.config/foot/foot.ini"
+    mode: 0644
+
+- name: Unarchive a file that needs to be downloaded (added in 2.0)
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
+    dest: "$HOME/.local/share/fonts"
+    remote_src: yes
+
+- name: Regenreate font cache
+  ansible.builtin.command:
+    cmd: "fc-cache -f"

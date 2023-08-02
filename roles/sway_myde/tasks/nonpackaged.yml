@@ -1,0 +1,33 @@
+---
+
+- name: Ensure .buildprojs directory exist
+  file:
+    path: $HOME/.builddeprojs
+    state: directory
+
+- name: Get the wlogout application 
+  ansible.builtin.git:
+    repo: https://github.com/ArtsyMacaw/wlogout.git
+    dest: $HOME/.builddeprojs/wlogout
+
+- name: Build wlogout 
+  shell: |
+    cd $HOME/.builddeprojs/wlogout
+    meson build
+    ninja -C build
+
+- name: install wlogout
+  become: true
+  shell: |
+    cd $HOME/.builddeprojs/wlogout
+    ninja -C build install
+
+- name: Get the azote application 
+  ansible.builtin.git:
+    repo: https://github.com/nwg-piotr/azote.git
+    dest: $HOME/.builddeprojs/azote
+
+- name: Get the nwg-displays application 
+  ansible.builtin.git:
+    repo: https://github.com/nwg-piotr/nwg-displays
+    dest: $HOME/.builddeprojs/nwg-displays

@@ -1,0 +1,21 @@
+# Read `man 5 sway` for a complete reference.
+include $HOME/.config/sway/theme
+
+### Variables
+include /etc/sway/config-vars.d/*
+include $HOME/.config/sway/variables.d/*.conf
+
+include $HOME/.config/sway/autostart
+### Output configuration
+# 
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+exec ~/.azotebg
+
+#  These files are are created by nwg-display
+include $HOME/.config/sway/outputs
+include $HOME/.config/sway/workspaces
+
+
+include /etc/sway/config.d/*
+include $HOME/.config/sway/config.d/*.conf

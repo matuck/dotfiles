@@ -1,0 +1,45 @@
+---
+
+- name: Ensure sway is installed
+  package:
+    name: sway
+
+- name: Ensure sway config directories exists
+  loop:
+    - "sway"
+    - "sway/config.d"
+    - "sway/variables.d"
+  file:
+    path: "$HOME/.config/{{ item }}"
+    state: directory
+    mode: 0755
+
+- name: Ensure base sway is configured
+  loop:
+    - "config"
+    - "autostart"
+    - "theme"
+  ansible.builtin.template:
+    src: "templates/sway/{{ item }}.j2"
+    dest: "$HOME/.config/sway/{{ item }}"
+
+- name: Ensure sway config.d is configured
+  loop:
+    - "50-inputs.conf"
+    - "70-inputs.conf"
+    - "80-swaybar.conf"
+    - "90-hotkeys.conf"
+    - "91-hotkeys-multimedia.conf"
+  ansible.builtin.template:
+    src: "templates/sway/config.d/{{ item }}.j2"
+    dest: "$HOME/.config/sway/config.d/{{ item }}"
+
+- name: Ensure sway variables.d is configured
+  loop:
+    - "01-mod.conf"
+    - "10-directions.conf"
+    - "20-apps.conf"
+    - "30-menu.conf"
+  ansible.builtin.template:
+    src: "templates/sway/variables.d/{{ item }}.j2"
+    dest: "$HOME/.config/sway/variables.d/{{ item }}"
