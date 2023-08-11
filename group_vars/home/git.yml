@@ -1,0 +1,7 @@
+---
+gitname: "Mitch Tuck"
+gitemail: "matuck@matuck.com"
+gitdefaultBranch: "main"
+gitexcludesFile: "~/.gitignore"
+gitgpgSign: false
+#gitsigningkey:  ""

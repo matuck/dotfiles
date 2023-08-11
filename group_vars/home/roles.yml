@@ -1,0 +1,6 @@
+host_roles:
+  - vim
+  - tmux
+  - zsh
+  - bash
+  - git

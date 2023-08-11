@@ -2,8 +2,8 @@
 # tasks file for vim
 
 - name: Ensure vimrc is setup
-  backup: true
   ansible.builtin.template:
     src: "templates/vimrc.j2"
     dest: "$HOME/.vimrc"
     mode: 0660
+    backup: true

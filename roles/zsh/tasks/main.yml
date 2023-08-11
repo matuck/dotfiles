@@ -15,8 +15,8 @@
   when: not oh_my_zsh_stat.stat.exists
 
 - name: Ensure zshrc is updated
-  backup: true
   ansible.builtin.template:
+    backup: true
     src: "templates/zshrc.j2"
     dest: "$HOME/.zshrc"
     mode: 0660

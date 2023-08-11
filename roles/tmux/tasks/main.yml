@@ -18,10 +18,11 @@
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: "$HOME/.tmux/plugins/tpm"
+    force: true
 
 - name: Ensure tmux.conf is setup
-  backup: true
   ansible.builtin.template:
+    backup: true
     src: "templates/tmux.conf.j2"
     dest: "$HOME/.tmux.conf"
     mode: 0660

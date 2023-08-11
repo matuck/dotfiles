@@ -3,51 +3,55 @@
 
 - name: Ensure machine is setup correctly
   hosts: all
-
   tasks:
-    - name: Load Overrideen settings
-      include_vars: "{{ item }}"
-      with_first_found:
-        - files:
-            - "settingsoverride.yml"
-          skip: true
-
-    - name: Include OS Specific tests
-      include_tasks: "{{ ansible_os_family }}.yml"
-
-    - name: Ensure home bin directory exists
-      ansible.builtin.file:
-        path: $HOME/bin
-        state: directory
-
-    - name: Ensure tmux plugins directory exists
-      ansible.builtin.file:
-        path: $HOME/.tmux/plugins
-        state: directory
-
-    - name: Ensure any scripts are available
-      loop: "{{ scripts }}"
-      ansible.builtin.template:
-        src: "{{ item.localsrc }}"
-        dest: "{{ item.dest }}"
-        mode: 0770
-
-    - name: Ensure Configuraiton files are installed
-      loop: "{{ dotfilestemplates }}"
-      ansible.builtin.template:
-        src: "{{ item.localsrc }}"
-        dest: "{{ item.dest }}"
-        mode: 0660
-
-    - name: Ensure has arvhies setup
-      loop: "{{ archives }}"
-      ansible.builtin.unarchive:
-        src: "{{ item.file }}"
-        dest: "{{ item.dest }}"
-
-    - name: Git checkout
-      ansible.builtin.git:
-        repo: "{{ item.repo }}"
-        dest: "{{ item.dest }}"
-        version: "{{ git.branch | default(omit) }}"
-      with_items: "{{ gits }}"
+    - name: "include roles"
+      loop: "{{ host_roles }}"
+      include_role:
+        name: "{{ item }}"
+  #  tasks:
+  #    - name: Load Overrideen settings
+  #      include_vars: "{{ item }}"
+  #      with_first_found:
+  #        - files:
+  #            - "settingsoverride.yml"
+  #          skip: true
+  #
+  #    - name: Include OS Specific tests
+  #      include_tasks: "{{ ansible_os_family }}.yml"
+  #
+  #    - name: Ensure home bin directory exists
+  #      ansible.builtin.file:
+  #        path: $HOME/bin
+  #        state: directory
+  #
+  #    - name: Ensure tmux plugins directory exists
+  #      ansible.builtin.file:
+  #        path: $HOME/.tmux/plugins
+  #        state: directory
+  #
+  #    - name: Ensure any scripts are available
+  #      loop: "{{ scripts }}"
+  #      ansible.builtin.template:
+  #        src: "{{ item.localsrc }}"
+  #        dest: "{{ item.dest }}"
+  #        mode: 0770
+  #
+  #    - name: Ensure Configuraiton files are installed
+  #      loop: "{{ dotfilestemplates }}"
+  #      ansible.builtin.template:
+  #        src: "{{ item.localsrc }}"
+  #        dest: "{{ item.dest }}"
+  #        mode: 0660
+  #
+  #    - name: Ensure has arvhies setup
+  #      loop: "{{ archives }}"
+  #      ansible.builtin.unarchive:
+  #        src: "{{ item.file }}"
+  #        dest: "{{ item.dest }}"
+  #
+  #    - name: Git checkout
+  #      ansible.builtin.git:
+  #        repo: "{{ item.repo }}"
+  #        dest: "{{ item.dest }}"
+  #        version: "{{ git.branch | default(omit) }}"
+  #      with_items: "{{ gits }}"
