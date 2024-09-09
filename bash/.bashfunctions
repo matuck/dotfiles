@@ -1,0 +1,12 @@
+updateshp() {
+  read -s -p "JonesPassword: " jonesp
+  rm /home/matuck/.ssh/jones
+  echo $jonesp > /home/matuck/.ssh/jones
+  chmod 600 /home/matuck/.ssh/jones
+}
+updateshu() {
+  read -s -p "CSAPassword: " csap
+  rm /home/matuck/.ssh/csa
+  echo $csap > /home/matuck/.ssh/csa
+  chmod 600 /home/matuck/.ssh/csa
+}

@@ -1,0 +1,2 @@
+alias shp='sshpass -f /home/matuck/.ssh/jones ssh -oStrictHostKeyChecking=no '
+alias shu='sshpass -f /home/matuck/.ssh/csa ssh -l csa_mitch_tuck -oStrictHostKeyChecking=no '
