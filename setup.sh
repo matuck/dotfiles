@@ -13,6 +13,7 @@ base=(
 useronly=(
     bin
     vim
+    nvim
     git
 )
 
