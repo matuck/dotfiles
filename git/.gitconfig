@@ -1,0 +1,12 @@
+[user]
+	name = Mitch Tuck
+	email = matuck@matuck.com
+	signingkey = CE107013A0E03F6F
+[init]
+	defaultBranch = main
+[core]
+	excludesFile = ~/.gitignore
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = False 
