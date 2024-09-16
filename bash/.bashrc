@@ -9,7 +9,9 @@ export OSH=$HOME/'.oh-my-bash'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="90210"
+#OSH_THEME="90210"
+#OSH_THEME="powerline-icon"
+OSH_THEME="powerline-multiline"
 
 # If you set OSH_THEME to "random", you can ignore themes you don't like.
 # OMB_THEME_RANDOM_IGNORED=("powerbash10k" "wanelo")
@@ -152,3 +154,4 @@ export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 gpg-connect-agent updatestartuptty /bye > /dev/null
+eval "$(oh-my-posh init bash)"
