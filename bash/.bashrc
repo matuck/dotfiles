@@ -145,13 +145,7 @@ source "$OSH"/oh-my-bash.sh
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 
-source ~/.bashaliases
-source ~/.bashfunctions
-
-PATH=$PATH:$HOME/.local/bin:$HOME/bin:/usr/local/go/bin
-
-export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
-gpg-connect-agent updatestartuptty /bye > /dev/null
-eval "$(oh-my-posh init bash)"
+for file in ~/.bashrc.d/*.bashrc;
+do
+source $file
+done
