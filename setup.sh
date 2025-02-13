@@ -15,6 +15,7 @@ useronly=(
     vim
     nvim
     git
+    backgrounds
     hyprland_desktop
 )
 
