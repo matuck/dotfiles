@@ -11,9 +11,15 @@ case "$DIST" in
         pacman -Qi yay &> /dev/null
         retVal=$?
         if [ $retVal -eq 1 ] ; then
-            echo "Please install yay";
+            if [[ "$DOPKGINSTALLS" = "y" ]] ; then
+                command -v yay &> /dev/null
+                $retVal=$?
+                if [ $retVal -eq 1 ] ; then 
+                    sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si
+                fi
+            fi
         fi
-        PKGINST="yay -S - ";
+        PKGINST="yay -S --needed - ";
         ;;
     "Ubuntu" | "Debian")
         echo "This is not setup yet"
