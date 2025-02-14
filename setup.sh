@@ -59,7 +59,6 @@ echo "Stowing apps for user: ${whoami}"
 # install apps available to local users
 for app in $DOTINSTALLS; do
     if [[ "$DOPKGINSTALLS" = "y" ]] ; then
-        echo "__setup/$app.$DIST";
         if [ -f __setup/$app.$DIST ] ; then
             echo "Install any packages needed for $app dot files";
             eval "$PKGINST < __setup/$app.$DIST";
