@@ -6,25 +6,36 @@
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
+    "group/hardware": {
+    	"orientation": "horizontal",
+	"modules": [
+		"cpu",
+		"memory"
+	]
+    },
+    "group/system": {
+	"orientation": "horizontal",
+	"modules": [
+		"custom/notification",
+		"clock",
+        	"battery",
+        	"power-profiles-daemon",
+        	"idle_inhibitor",
+		"custom/power"
+	]
+    },
     "modules-left": [
     	"hyprland/workspaces",
-	"hyprland/window",
+        "mpris",
         "custom/media"
     ],
     "modules-center": [
-        "mpris"
     ],
     "modules-right": [
-        "idle_inhibitor",
         "pulseaudio",
-        "power-profiles-daemon",
-        "cpu",
-        "memory",
-        "battery",
+	"group/hardware",
         "tray",
-        "custom/notification",
-        "clock",
-        "custom/power"
+	"group/system"
     ],
     // Modules configuration
     "hyprland/workspaces": {
