@@ -94,10 +94,12 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": false,
+	"on-click": "resources"
     },
     "memory": {
-        "format": "{}% "
+        "format": "{}% ",
+	"on-click": "resources"
     },
     "temperature": {
         // "thermal-zone": 2,
