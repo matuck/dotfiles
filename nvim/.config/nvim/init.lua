@@ -227,7 +227,7 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-  "rest-nvim/rest.nvim",
+  'rest-nvim/rest.nvim',
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -253,26 +253,28 @@ require('lazy').setup({
     },
   },
   {
-    'lambdalisue/suda.vim'
+    'lambdalisue/suda.vim',
   },
 
-    -- install without yarn or npm
+  -- install without yarn or npm
   {
-      "iamcco/markdown-preview.nvim",
-      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-      ft = { "markdown" },
-      build = function() vim.fn["mkdp#util#install"]() end,
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function()
+      vim.fn['mkdp#util#install']()
+    end,
   },
 
   -- install with yarn or npm
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && yarn install",
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    build = 'cd app && yarn install',
     init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
+      vim.g.mkdp_filetypes = { 'markdown' }
     end,
-    ft = { "markdown" },
+    ft = { 'markdown' },
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
@@ -339,7 +341,7 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       --{ 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
-      { 'nvim-tree/nvim-web-devicons'},
+      { 'nvim-tree/nvim-web-devicons' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -421,7 +423,18 @@ require('lazy').setup({
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
-
+  {
+    'vimwiki/vimwiki',
+    init = function()
+      vim.g.vimwiki_list = {
+        {
+          path = '~/Documents/vimwiki',
+          syntax = 'default',
+          ext = '.wiki',
+        },
+      }
+    end,
+  },
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
