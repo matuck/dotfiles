@@ -18,7 +18,7 @@ function bwpassupdate {
 	bwunlock
 	item=$(bw get item $1 )
 	itemid=$(echo $item | jq -r '.id' )
-	read -s -p "Password: " newpassword
+	read -r -s -p "Password: " newpassword
 	echo $item | jq --arg newpassword $newpassword '.login.password=$newpassword' | bw encode | bw edit item $itemid 
 	bw sync
 }
