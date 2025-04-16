@@ -23,6 +23,8 @@ hyprlock-git
 hyprpaper-git
 hyprpicker-git
 hyprutils-git
+hyprpolkitagent-git
+hyprsysteminfo-git
 hyprwayland-scanner-git
 jq
 kitty
