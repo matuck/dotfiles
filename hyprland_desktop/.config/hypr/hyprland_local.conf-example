@@ -1,0 +1,16 @@
+# MONITOR CONFIG
+monitor = eDP-1, 2880x1920@120 , auto ,1.875000
+#home dock setup
+monitor = DP-3, 3440x1440@165, auto, 1
+#worked docked setup
+monitor = DP-9, 1920x1080@60, 0x0, 1
+monitor = DP-10, 1920x1080@60, 1920x0, 1
+monitor = DP-11, 1920x1080@60, -1920x0, 1
+
+exec-once = grep closed /proc/acpi/button/lid/LID0/state && hyprctl keyword monitor eDP-1,disable #disable laptop screen if lid closed on hyprland start
+
+# trigger when the switch is turning on
+bindl = , switch:on:Lid Switch, exec, hyprctl keyword monitor "eDP-1, disable"
+# trigger when the switch is turning off
+bindl = , switch:off:Lid Switch, exec, hyprctl keyword monitor "eDP-1, preferred, 0x0, 1"]
+
