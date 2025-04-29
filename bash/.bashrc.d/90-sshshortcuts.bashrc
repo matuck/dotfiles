@@ -1,7 +1,8 @@
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh"
 #alias shp='sshpass -p$(gopass jones) ssh -l jones -oStrictHostKeyChecking=no '
 #alias shu='sshpass -p$(gopass csa) ssh -l csa_mitch_tuck -oStrictHostKeyChecking=no '
-alias shp='sshpass -p$(bwpass jones) ssh -l jones -oStrictHostKeyChecking=no '
-alias shu='sshpass -p$(bwpass csa) ssh -l csa_mitch_tuck -oStrictHostKeyChecking=no '
+alias shp='TERM=xterm-256color sshpass -p$(bwpass jones) ssh -l jones -oStrictHostKeyChecking=no '
+alias shu='TERM=xterm-256color sshpass -p$(bwpass csa) ssh -l csa_mitch_tuck -oStrictHostKeyChecking=no '
 #alias updateshp='gopass insert -f jones'
 #alias updateshu='gopass insert -f csa'
 alias updateshp='bwpassupdate jones'
