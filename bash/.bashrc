@@ -149,3 +149,8 @@ for file in ~/.bashrc.d/*.bashrc;
 do
 source $file
 done
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/mitchtuck/.lmstudio/bin"
+# End of LM Studio CLI section
+
