@@ -255,7 +255,6 @@ require('lazy').setup({
   {
     'lambdalisue/suda.vim',
   },
-
   -- install without yarn or npm
   {
     'iamcco/markdown-preview.nvim',
@@ -276,7 +275,18 @@ require('lazy').setup({
     end,
     ft = { 'markdown' },
   },
-
+  {
+    'azratul/live-share.nvim',
+    dependencies = {
+      'jbyuki/instant.nvim',
+    },
+    config = function()
+      vim.g.instant_username = 'your-username'
+      require('live-share').setup {
+        -- Add your configuration here
+      }
+    end,
+  },
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -423,18 +433,18 @@ require('lazy').setup({
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
-  {
-    'vimwiki/vimwiki',
-    init = function()
-      vim.g.vimwiki_list = {
-        {
-          path = '~/Documents/vimwiki',
-          syntax = 'default',
-          ext = '.wiki',
-        },
-      }
-    end,
-  },
+  --{
+  --  'vimwiki/vimwiki',
+  --  init = function()
+  --    vim.g.vimwiki_list = {
+  --      {
+  --        path = '~/Documents/vimwiki',
+  --        syntax = 'default',
+  --        ext = '.wiki',
+  --      },
+  --    }
+  --  end,
+  --},
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
