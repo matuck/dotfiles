@@ -1,7 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 10px;
 }
 
 window#waybar {
@@ -116,7 +116,7 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-    padding: 0 10px;
+    padding: 0 5px;
     color: #ffffff;
 }
 
@@ -350,5 +350,5 @@ label:focus {
 }
 
 #custom-power {
-    font-size: 20px;
+    /*font-size: 20px;*/
 }

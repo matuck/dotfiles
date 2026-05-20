@@ -1,5 +1,8 @@
+
+@theme "/home/mitchtuck/.local/share/rofi/themes/rounded-red-dark.rasi"
 configuration {
-	modes: "drun,run,ssh";
+	//modes: "drun,run,ssh";
+	modi: "drun,run,ssh";
 /*	font: "mono 12";*/
 /*	location: 0;*/
 /*	yoffset: 0;*/
@@ -158,4 +161,4 @@ configuration {
 
 //@theme "/usr/share/rofi/themes/fullscreen-preview.rasi"
 
-@theme "/home/mitchtuck/.local/share/rofi/themes/rounded-red-dark.rasi"
+//@theme "/home/mitchtuck/.local/share/rofi/themes/launchpad.rasi"

@@ -154,3 +154,5 @@ done
 export PATH="$PATH:/home/mitchtuck/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+. "$HOME/.cargo/env"

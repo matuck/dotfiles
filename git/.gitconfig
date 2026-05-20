@@ -1,7 +1,7 @@
 [user]
 	name = Mitch Tuck
 	email = matuck@matuck.com
-	signingkey = CE107013A0E03F6F
+	signingkey = 7BAF716516F997F4
 [init]
 	defaultBranch = main
 [core]

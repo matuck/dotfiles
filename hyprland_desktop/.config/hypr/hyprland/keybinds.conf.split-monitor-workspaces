@@ -10,10 +10,20 @@ bindd = Super, H, Show cheatsheet, exec, hyprctl -j binds | jq  'map(select(.des
 # Screenshot, Record, OCR, Color picker, Clipboard history
 bindd = Super, V, Show Clipboard History,exec, if [[ $(pidof rofi) ]]; then killall rofi; fi; rofi -modi clipboard:~/.config/rofi/cliphist-rofi-img -show clipboard -show-icons
 bindd = Super, Period, Show Emojo Selector, exec, if [[ $(pidof rofi) ]]; then killall rofi; fi; rofi -show emoji -emoji-mode copy
-bindd = Super+Shift, S, Screenshot menu, exec, ~/.local/bin/rofi_screenshot.sh
+bindd = Super+Shift, S, Screenshot Snip to Clipboard, exec, grim -g "$(slurp)" - |wl-copy
+bindd = Super+Shift+Alt, S, Screenshot Snip to Editor, exec, grim -g "$(slurp)" - | swappy -f -
+# OCR
+bindd = Super+Shift,T,Screenshot Snip OCR to Clipboard, exec,grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract -l eng "tmp.png" - | wl-copy && rm "tmp.png"
+bind = Super+Ctrl+Shift,S,exec,grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract "tmp.png" - | wl-copy && rm "tmp.png"
 # Color picker
 bindd = Super+Shift, C, Get color from Screen and put on Clipboard, exec, hyprpicker -a
 # Fullscreen screenshot
+bindld=,Print,Screenshot to Clipboard, exec,grim - | wl-copy
+bindld= Ctrl,Print, Screenshot to ~/Pictures/Screenshots folder and Clipboard, exec, mkdir -p ~/Pictures/Screenshots && ~/.local/bin/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png
+# Recording stuff
+bindd = Super+Alt, R, Record Screen Region (no sound),exec, ~/.local/bin/record-script.sh
+bindd = Ctrl+Alt, R, Record Entire Screen (no sound),exec, ~/.local/bin/record-script.sh --fullscreen
+bindd = Super+Shift+Alt, R, Record Entire screen with sound, exec, ~/local/bin/record-script.sh --fullscreen-sound 
 ##! Session
 bindd = Super, L, Lock Screen, exec, loginctl lock-session
 bindld = Super+Shift, L,Power/Logout Screen, exec, wlogout -s
@@ -40,42 +50,43 @@ bind = Super+Shift, Right, movewindow, r # [hidden]
 bind = Super+Shift, Up, movewindow, u # [hidden]
 bind = Super+Shift, Down, movewindow, d # [hidden]
 # Window split ratio
-binded = Super, [+=']/[-;],Change split ratio for window by +-.1, layoutmsg, splitratio -0.1 # This entry can never really be triggered but is here for the cheat sheat
-binde = Super, Minus, layoutmsg, splitratio -0.1 # [hidden]
-binde = Super, Equal, layoutmsg, splitratio +0.1 # [hidden]
-binde = Super, Semicolon, layoutmsg, splitratio -0.1 # [hidden]
-binde = Super, Apostrophe, layoutmsg, splitratio +0.1 # [hidden]
+binded = Super, [+=']/[-;],Change split ratio for window by +-.1, splitratio, -0.1 # This entry can never really be triggered but is here for the cheat sheat
+binde = Super, Minus, splitratio, -0.1 # [hidden]
+binde = Super, Equal, splitratio, +0.1 # [hidden]
+binde = Super, Semicolon, splitratio, -0.1 # [hidden]
+binde = Super, Apostrophe, splitratio, +0.1 # [hidden]
 # Positioning mode
 bindd = Super+Alt, Space, Float the currect window ,togglefloating,
 bindd = Super+Alt, F, Toggle fake full screen,fullscreenstate, 0 3
 bind = Super, F, fullscreen, 0
 bind = Super, D, fullscreen, 1
 #change the splits
-bindd = Super, Y, Change split direction of open windows,layoutmsg, togglesplit
+bindd = Super, Y, Change split direction of open windows,togglesplit
 bindd = Super+Shift, H, Make next split horizontal,layoutmsg, preselect d
 
 #!
 ##! Workspace navigation
+bind = Super, G, exec, hyprctl dispatch split-grabroguewindows
 # Switching
 bindd = Super, [0-9], Focus workspace [1-10], exec, hyprctl dispatch workspace 1 # This entry cant be triggered but is for cheat sheet
-bind = Super, 1, exec, hyprctl dispatch workspace 1 # [hidden]
-bind = Super, 2, exec, hyprctl dispatch workspace 2 # [hidden]
-bind = Super, 3, exec, hyprctl dispatch workspace 3 # [hidden]
-bind = Super, 4, exec, hyprctl dispatch workspace 4 # [hidden]
-bind = Super, 5, exec, hyprctl dispatch workspace 5 # [hidden]
-bind = Super, 6, exec, hyprctl dispatch workspace 6 # [hidden]
-bind = Super, 7, exec, hyprctl dispatch workspace 7 # [hidden]
-bind = Super, 8, exec, hyprctl dispatch workspace 8 # [hidden]
-bind = Super, 9, exec, hyprctl dispatch workspace 9 # [hidden]
-bind = Super, 0, exec, hyprctl dispatch workspace 10 # [hidden]
-bind = Super+Alt, left, movecurrentworkspacetomonitor, l
-bind = Super+Alt, right, movecurrentworkspacetomonitor, r
-bind = Super+Alt, up, movecurrentworkspacetomonitor, u
-bind = Super+Alt, down, movecurrentworkspacetomonitor, d
+bind = Super, 1, exec, hyprctl dispatch split-workspace 1 # [hidden]
+bind = Super, 2, exec, hyprctl dispatch split-workspace 2 # [hidden]
+bind = Super, 3, exec, hyprctl dispatch split-workspace 3 # [hidden]
+bind = Super, 4, exec, hyprctl dispatch split-workspace 4 # [hidden]
+bind = Super, 5, exec, hyprctl dispatch split-workspace 5 # [hidden]
+bind = Super, 6, exec, hyprctl dispatch split-workspace 6 # [hidden]
+bind = Super, 7, exec, hyprctl dispatch split-workspace 7 # [hidden]
+bind = Super, 8, exec, hyprctl dispatch split-workspace 8 # [hidden]
+bind = Super, 9, exec, hyprctl dispatch split-workspace 9 # [hidden]
+bind = Super, 0, exec, hyprctl dispatch split-workspace 10 # [hidden]
+bind = Super+Alt, left, exec, hyprctl dispatch split-changemonitor prev
+bind = Super+Alt, right, exec, hyprctl dispatch split-changemonitor next
+bind = Super+Alt, up, exec, hyprctl dispatch split-changemonitor prev
+bind = Super+Alt, down, exec, hyprctl dispatch split-changemonitor next
 
-bindd = Super+Ctrl, ←/→,Move workspace focus left or right, workspace, +1 # This entry can't be triggered but is for cheat sheet
-bind = Super+Ctrl, Right, workspace, +1 # [hidden]
-bind = Super+Ctrl, Left, workspace, -1 # [hidden]
+bindd = Super+Ctrl, ←/→,Move monitor focus left or right, workspace, +1 # This entry can't be triggered but is for cheat sheet
+bind = Super+Ctrl, Right, exec, hyprctl dispatch focusmonitor +1 # [hidden]
+bind = Super+Ctrl, Left, exec, hyprctl dispatch focusmonitor -1 # [hidden]
 bindd = Super, Scroll ↑/↓,Move workspace focus with mouse wheel/scroll, workspace, +1 # This entry cannot be triggered but is for cheat sheet
 bind = Super, mouse_up, workspace, +1 # [hidden]
 bind = Super, mouse_down, workspace, -1 # [hidden]
@@ -92,16 +103,16 @@ bindd = Super, S, Show the special workspace, togglespecialworkspace,
 ##! Workspace management
 # Move window to workspace Super + Alt + [0-9]
 bindd = Super+Alt, [0-9], Move window to workspace 1-10, exec, hyprctl dispatch movetoworkspacesilent 1 # This entry cant be triggered but is for cheat sheet
-bind = Super+Alt, 1, exec, hyprctl dispatch movetoworkspacesilent 1 # [hidden]
-bind = Super+Alt, 2, exec, hyprctl dispatch movetoworkspacesilent 2 # [hidden]
-bind = Super+Alt, 3, exec, hyprctl dispatch movetoworkspacesilent 3 # [hidden]
-bind = Super+Alt, 4, exec, hyprctl dispatch movetoworkspacesilent 4 # [hidden]
-bind = Super+Alt, 5, exec, hyprctl dispatch movetoworkspacesilent 5 # [hidden]
-bind = Super+Alt, 6, exec, hyprctl dispatch movetoworkspacesilent 6 # [hidden]
-bind = Super+Alt, 7, exec, hyprctl dispatch movetoworkspacesilent 7 # [hidden]
-bind = Super+Alt, 8, exec, hyprctl dispatch movetoworkspacesilent 8 # [hidden]
-bind = Super+Alt, 9, exec, hyprctl dispatch movetoworkspacesilent 9 # [hidden]
-bind = Super+Alt, 0, exec, hyprctl dispatch movetoworkspacesilent 10 # [hidden] 
+bind = Super+Alt, 1, exec, hyprctl dispatch split-movetoworkspacesilent 1 # [hidden]
+bind = Super+Alt, 2, exec, hyprctl dispatch split-movetoworkspacesilent 2 # [hidden]
+bind = Super+Alt, 3, exec, hyprctl dispatch split-movetoworkspacesilent 3 # [hidden]
+bind = Super+Alt, 4, exec, hyprctl dispatch split-movetoworkspacesilent 4 # [hidden]
+bind = Super+Alt, 5, exec, hyprctl dispatch split-movetoworkspacesilent 5 # [hidden]
+bind = Super+Alt, 6, exec, hyprctl dispatch split-movetoworkspacesilent 6 # [hidden]
+bind = Super+Alt, 7, exec, hyprctl dispatch split-movetoworkspacesilent 7 # [hidden]
+bind = Super+Alt, 8, exec, hyprctl dispatch split-movetoworkspacesilent 8 # [hidden]
+bind = Super+Alt, 9, exec, hyprctl dispatch split-movetoworkspacesilent 9 # [hidden]
+bind = Super+Alt, 0, exec, hyprctl dispatch split-movetoworkspacesilent 10 # [hidden] 
 
 bindd = Super+Ctrl+Shift, Up, Move to special workspace, movetoworkspacesilent, special # [hidden]
 
@@ -130,8 +141,8 @@ bind = Alt, Tab, bringactivetotop, # [hidden] bring it to the top
 
 #!
 ##! Widgets
-bindrd = Super+Ctrl, R, Restart ashell, exec, killall ashell ; ashell &
-bindrd = Super+Ctrl+Alt, R, Restart ashell and Reload Hyprland config, exec, hyprctl reload; killall ashell; ashell &
+bindrd = Super+Ctrl, R, Restart Waybar, exec, killall waybar ; waybar &
+bindrd = Super+Ctrl+Alt, R, Restart Waybar and Reload Hyprland config, exec, hyprctl reload; killall waybar; waybar &
 
 ##! Media
 bindld = Super+Shift, N, Media Next Track, exec, playerctl next || playerctl position `bc <<< "100 * $(playerctl metadata mpris:length) / 1000000 / 100"`
@@ -174,7 +185,7 @@ bindd = Super+Ctrl, V, Launch Volume Mixer, exec, pavucontrol
 bindd = Super+Ctrl+Shift, V, Launch EasyEffects, exec, easyeffects
 bindd = Ctrl+Shift, Escape, Launch Gnome System Monitor, exec, resources
 bindld= Super+Ctrl, M, Launch Spotify, exec, flatpak run com.spotify.Client
-bindird = Super, Super_L, ,exec, if [[ $(pidof rofi) ]]; then killall rofi; else rofi -show drun -show-icons -theme launchpad.rasi; fi
+bindird = Super, Super_L, ,exec, if [[ $(pidof rofi) ]]; then killall rofi; else rofi -show drun -show-icons; fi
 bindd = Super+Ctrl, T, Change Wallpaper, exec, waypaper
 bindd = Super, N, Toggle notificaitons display, exec, swaync-client -t
 bindd = Super, C, Clear notificaitons, exec, swaync-client -C
